@@ -60,11 +60,6 @@ export default function TrainingsPage() {
 
       if (!response.ok) {
         console.error("Failed to load trainings:", data.error)
-        toast({
-          title: "שגיאה בטעינת אימונים",
-          description: data.error || "לא ניתן לטעון את רשימת האימונים",
-          variant: "destructive",
-        })
         return
       }
 
@@ -80,11 +75,6 @@ export default function TrainingsPage() {
       }
     } catch (error) {
       console.error("Error loading trainings:", error)
-      toast({
-        title: "שגיאת חיבור",
-        description: "לא ניתן להתחבר לשרת. האם השרת פעיל?",
-        variant: "destructive",
-      })
     }
   }
 

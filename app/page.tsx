@@ -40,47 +40,63 @@ export default function HomePage() {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground">אוצר מילים</h1>
-          <p className="text-lg text-muted-foreground">למידת עברית</p>
+          <p className="text-lg text-muted-foreground">למידת אנגלית</p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-4">
-          <Link href="/trainings">
-            <Button
-              size="lg"
-              className="w-full h-16 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-primary text-primary-foreground"
-            >
-              <Plus className="ml-2 h-5 w-5" />
-              התחל/צור אימון
-            </Button>
-          </Link>
+        {loading ? (
+          <div className="text-center text-muted-foreground">טוען...</div>
+        ) : user ? (
+          <>
+            {/* Action Buttons */}
+            <div className="space-y-4">
+              <Link href="/trainings">
+                <Button
+                  size="lg"
+                  className="w-full h-16 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-primary text-primary-foreground"
+                >
+                  <Plus className="ml-2 h-5 w-5" />
+                  התחל/צור אימון
+                </Button>
+              </Link>
 
-          <Link href="/memorize">
-            <Button
-              size="lg"
-              className="w-full h-16 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-accent text-accent-foreground"
-            >
-              <BookOpen className="ml-2 h-5 w-5" />
-              שינון מילים
-            </Button>
-          </Link>
+              <Link href="/memorize">
+                <Button
+                  size="lg"
+                  className="w-full h-16 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-accent text-accent-foreground"
+                >
+                  <BookOpen className="ml-2 h-5 w-5" />
+                  שינון מילים
+                </Button>
+              </Link>
 
-          {hasLastTraining && (
-            <Link href="/training">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full h-14 text-base rounded-xl border-2 hover:bg-secondary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-transparent"
-              >
-                <Play className="ml-2 h-5 w-5" />
-                המשך אימון אחרון
+              {hasLastTraining && (
+                <Link href="/training">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full h-14 text-base rounded-xl border-2 hover:bg-secondary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-transparent"
+                  >
+                    <Play className="ml-2 h-5 w-5" />
+                    המשך אימון אחרון
+                  </Button>
+                </Link>
+              )}
+            </div>
+
+            {/* Footer hint */}
+            <p className="text-center text-sm text-muted-foreground">בחר באפשרות כדי להתחיל</p>
+          </>
+        ) : (
+          <div className="text-center space-y-4">
+            <p className="text-muted-foreground">יש להתחבר כדי להשתמש באפליקציה</p>
+            <Link href="/login">
+              <Button size="lg" className="w-full h-14 rounded-xl">
+                <LogIn className="ml-2 h-5 w-5" />
+                התחבר עם Google
               </Button>
             </Link>
-          )}
-        </div>
-
-        {/* Footer hint */}
-        <p className="text-center text-sm text-muted-foreground">בחר באפשרות כדי להתחיל</p>
+          </div>
+        )}
       </div>
     </div>
   )
